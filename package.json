@@ -1,0 +1,16 @@
+{
+  "name": "centro-control-backend",
+  "version": "1.0.0",
+  "description": "Backend para Centro de Control - Sistema de gestión de proyectos con IA",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --env-file=.env --watch server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.55.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
