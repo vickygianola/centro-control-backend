@@ -25,7 +25,7 @@ app.post("/api/chat", async (req, res) => {
 
   try {
     const params = {
-      model: "claude-sonnet-4-20250514",
+      model: "claude-sonnet-4-0",
       max_tokens: 8096,
       messages,
     };
