@@ -113,8 +113,15 @@ const SPAM_SUBJECT = [
   "verify your email", "tracking number",
 ];
 
+const JOB_DOMAINS = [
+  "linkedin.com", "infojobs.net", "infojobs.com", "indeed.com",
+  "glassdoor.com", "jobsite.co.uk", "monster.com", "jobtoday.com",
+  "tecnoempleo.com", "turijobs.com",
+];
+
 function isAutomatic(from, subject) {
   const f = from.toLowerCase();
+  if (JOB_DOMAINS.some((d) => f.includes(d))) return false;
   const s = subject.toLowerCase();
   return (
     SPAM_FROM.some((p) => f.includes(p)) ||
