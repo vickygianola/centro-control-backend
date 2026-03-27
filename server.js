@@ -103,25 +103,17 @@ app.get("/auth/google/callback", async (req, res) => {
 //  GMAIL — helpers
 // ══════════════════════════════════════════════════════════
 
-// Patrones de pre-filtro (sin IA)
+// Patrones de pre-filtro (sin IA) — solo spam técnico inequívoco
 const SPAM_FROM = [
-  "noreply", "no-reply", "notifications", "newsletter",
-  "mailer", "bounce", "donotreply", "automated",
+  "donotreply", "do-not-reply", "mailer-daemon", "bounce",
 ];
 const SPAM_SUBJECT = [
-  "unsubscribe", "newsletter", "promotion",
-  "verify your email", "tracking number",
-];
-
-const JOB_DOMAINS = [
-  "linkedin.com", "infojobs.net", "infojobs.com", "indeed.com",
-  "glassdoor.com", "jobsite.co.uk", "monster.com", "jobtoday.com",
-  "tecnoempleo.com", "turijobs.com",
+  "verify your email", "confirm your account", "password reset",
+  "your receipt", "order confirmation", "tracking number",
 ];
 
 function isAutomatic(from, subject) {
   const f = from.toLowerCase();
-  if (JOB_DOMAINS.some((d) => f.includes(d))) return false;
   const s = subject.toLowerCase();
   return (
     SPAM_FROM.some((p) => f.includes(p)) ||
@@ -279,6 +271,8 @@ ${projectList}
 
 EMAILS:
 ${emailList}
+
+IMPORTANTE: Si el usuario tiene proyectos relacionados con búsqueda de empleo, considera SIEMPRE relevantes los emails de portales de trabajo, plataformas de reclutamiento, LinkedIn, y headhunters, aunque parezcan notificaciones automáticas. El concepto de portal de empleo aplica globalmente — no te limites a plataformas específicas.
 
 Para cada email relevante incluí: id, from, subject, snippet, date, relevancia (por qué importa), proyecto (nombre del proyecto relacionado o null), accion (qué hay que hacer o null), urgencia (alta/media/baja).
 
